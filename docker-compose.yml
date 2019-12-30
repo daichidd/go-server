@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app:
+    container_name: app 
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+    # https://github.com/ufoscout/docker-compose-wait
+     WAIT_HOSTS: db:3306
+
+  db:
+   container_name: "${DB_CONTAINER_NAME}"
+   image: mysql:8
+   ports:
+    - "3306:3306"
+   volumes:
+    - ./db/mysql_init:/docker-entrypoint-initdb.d
+    - ./db/mysql_data:/var/lib/mysql
+    - ./db/mysql_conf/:/etc/mysql/conf.d
+   environment:
+    MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    MYSQL_USER: "${MYSQL_USER}"
+    MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+ 
