@@ -4,8 +4,8 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ENV GO111MODULE=on
 
-WORKDIR $GOPATH/src/DaichiEndo
-ADD . $GOPATH/src/DaichiEndo
+WORKDIR $GOPATH/src/daichidd
+ADD . $GOPATH/src/daichidd
 
 # wait for other container
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.6.0/wait /wait 
